@@ -1,3 +1,5 @@
-# Protobufers hello world
+# Protobuffers Demo
 
-Example how to use protocolbuffers.
+Simple example how to use Protocol Buffers.
+
+Presentation: https://hoto.github.io/protobuffers-demo

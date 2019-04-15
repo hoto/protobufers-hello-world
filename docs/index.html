@@ -1,56 +1,133 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>protobuffers</title>
+    <title>protobuffers</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/blood.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/blood.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-                  <section class="present">
-                    <h2>Protocol Bufers</h2>
-                    <p>Something clever here</p>
-                  </section>
-				  <section>What is going on</section>
-				  <section>What is going on</section>
-                </section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section id="title">
+            <h2>Protocol Buffers</h2>
+            <p><h4>Google's alternative to REST</h4></p>
+            <p>
+                <small>presentation by Andy</small>
+            </p>
+        </section>
+        <section id="overview">
+            <h2>PROTOBUF</h2>
+            <section>
+                <p>Serializes <b>structured data</b> for use in communication protocols.</p>
+                <pre><code class="protobuf" data-trim>
+                    message Person {
+                      required int32 id = 1;
+                      required string name = 2;
+                      optional string email = 3;
+                    }
+                 </code></pre>
+            </section>
+            <section>
+                <p>Generates library code for multiple languages.</p>
+                <pre><code class="java" data-trim data-line-numbers="1,7">
+                    Person andy = Person.newBuilder()
+                        .setId(123456)
+                        .setName("Andrzej Rehmann")
+                        .setEmail("andrzej.rehmann@gmail.com")
+                        .build();
+                    output = new FileOutputStream(args[0]);
+                    andy.writeTo(output);
+                 </code></pre>
+            </section>
+            <section>
+                <h3>Comparison</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>REST</th>
+                        <th>Protobuf</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Protocol</td>
+                        <td>HTTP</td>
+                        <td>gRPC</td>
+                    </tr>
+                    <tr>
+                        <td>Libraries</td>
+                        <td>Custom</td>
+                        <td>Auto-generated</td>
+                    </tr>
+                    <tr>
+                        <td>Languages</td>
+                        <td>All</td>
+                        <td>Go, Java, Javascript, C#, Python, C++, Dart, Ruby</td>
+                    </tr>
+                    <tr>
+                        <td>Body format</td>
+                        <td>Text</td>
+                        <td>Binary</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <ul>
+                    <li>2001 ⇒ internal at Google</li>
+                    <li>2008 ⇒ open sources</li>
+                    <li>2019 ⇒ 33k GitHub stars</li>
+                </ul>
+                Practically every project in Google uses protobuffs.
+            </section>
+            <section>
+                <ul>
+                    <li>Serializes structured data</li>
+                    <ul>
+                        <li>Definitions as text</li>
+                        <li>Binary in transit</li>
+                    </ul>
+                    <li>Language neutral - code generators</li>
+                    <li>Platform neutral</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>
 
-		<script src="js/reveal.js"></script>
+<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'plugin/highlight/highlight.js', async: true}
+        ],
+        transition: 'none'
+    });
+</script>
+</body>
 </html>
